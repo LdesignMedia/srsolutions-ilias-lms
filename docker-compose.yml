@@ -1,3 +1,4 @@
+version: "3"
 services:
   ilias:
     image: srsolutions/ilias
@@ -23,8 +24,3 @@ services:
       MYSQL_PASSWORD: $MYSQL_PASSWORD
     volumes:
       - db_data:/var/lib/mysql
-
-volumes:
-  ilias_data:
-  ilias_logs:
-  db_data:
