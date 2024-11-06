@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  ilias:
+    build: .
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+    environment:
+      ILIAS_DB_HOST: db
+      ILIAS_DB_USER: ilias
+      ILIAS_DB_PASS: $ILIAS_DB_PASS
+      ILIAS_DB_NAME: iliasdb
+    volumes:
+      - ilias_data:/var/www/html/data
+      - ilias_logs:/var/www/html/logs
+
+  db:
+    image: mariadb:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
+      MYSQL_DATABASE: iliasdb
+      MYSQL_USER: ilias
+      MYSQL_PASSWORD: $MYSQL_PASSWORD
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  ilias_data:
+  ilias_logs:
+  db_data:
