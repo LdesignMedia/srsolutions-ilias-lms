@@ -1,6 +1,6 @@
 services:
   ilias:
-    build: .
+    image: srsolutions/ilias
     ports:
       - "8080:80"
     depends_on:
